@@ -315,7 +315,7 @@ class BinarySearchTree {
 		const nodeRight = this.root.right;
 		if (!nodeLeft && !nodeRight) return true;
 		const leftCount = nodeLeft ? traverse(nodeLeft, 1) : 0;
-		const rightCount = nodeRight ? traverse(nodeRight, 1) : 1;
+		const rightCount = nodeRight ? traverse(nodeRight, 1) : 0;
 
 		function traverse(node, level) {
 			console.log(node)
