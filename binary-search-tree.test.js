@@ -176,16 +176,19 @@ describe("isBalanced", function() {
   });
 });
 
-// describe("findSecondHighest", function() {
-//   it("finds the 2nd largest", function() {
-//     var binarySearchTree = new BinarySearchTree();
-//     binarySearchTree.insert(15);
-//     binarySearchTree.insert(20);
-//     binarySearchTree.insert(10);
-//     binarySearchTree.insert(12);
-//     expect(binarySearchTree.findSecondHighest()).toEqual(15);
+describe("findSecondHighest", function() {
+  it("finds the 2nd largest", function() {
+    var binarySearchTree = new BinarySearchTree();
+    binarySearchTree.insert(15);
+    binarySearchTree.insert(20);
+    binarySearchTree.insert(10);
+    binarySearchTree.insert(100);
+    binarySearchTree.insert(55);
+    binarySearchTree.insert(76);
+    binarySearchTree.insert(12);
+    expect(binarySearchTree.findSecondHighest()).toEqual(76);
 
-//     var binarySearchTree2 = new BinarySearchTree();
-//     expect(binarySearchTree2.findSecondHighest()).toEqual(undefined);
-//   });
-// });
+    var binarySearchTree2 = new BinarySearchTree();
+    expect(binarySearchTree2.findSecondHighest()).toEqual(undefined);
+  });
+});

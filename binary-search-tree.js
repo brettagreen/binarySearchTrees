@@ -318,16 +318,24 @@ class BinarySearchTree {
 		const rightCount = nodeRight ? traverse(nodeRight, 1) : 0;
 
 		function traverse(node, level) {
-			console.log(node)
+			let count1;
+			let count2;
+
 			if (node.right) {
-				traverse(node.right, level++);
+				count1 = traverse(node.right, level+1);
 			}
 
 			if (node.left) {
-				traverse(node.left, level++);
+				count2 = traverse(node.left, level+1);
 			}
-			
-			return level;
+
+			if (!node.left && !node.right) {
+				return level;
+			}
+
+			count1 = count1 ? count1 : 0;
+			count2 = count2 ? count2 : 0;
+			return count1 > count2 ? count1 : count2;
 		}
 
 		return leftCount === rightCount || leftCount + 1 === rightCount || leftCount - 1 === rightCount;
@@ -337,27 +345,35 @@ class BinarySearchTree {
 	 * findSecondHighest(): Find the second highest value in the BST, if it exists.
 	 * Otherwise return undefined. */
 
-	// findSecondHighest() {
+	findSecondHighest() {
+		if (!this.root || (!this.root.left && !this.root.right)) return;
+		let node = this.root;
+		let highestVal = node.val;
+		let secondHighestVal = node.val;
 
-	// 	const rootRight = this.root.right;
-	// 	let current = rootRight;
-	// 	let former;
+		traverse(node);
 
-	// 	while(current) {
-	// 		if (!current.right) break;
-	// 		former = current;
-	// 		current = current.right
-	// 	}
-	// 	return former.left;
-		
-	// }
+		function traverse(node) {
+			if (node.val > secondHighestVal) {
+				if (node.val > highestVal) {
+					secondHighestVal = highestVal;
+					highestVal = node.val;
+				} else {
+					secondHighestVal = node.val;
+				}
+			}
+
+			if (node.left) {
+				traverse(node.left);
+			}
+
+			if (node.right) {
+				traverse(node.right);
+			}
+
+		}
+		return secondHighestVal;
+	}
 }
-
-
-var binarySearchTree2 = new BinarySearchTree();
-binarySearchTree2.insert(5);
-binarySearchTree2.insert(6);
-binarySearchTree2.insert(7);
-console.log(binarySearchTree2.isBalanced());
 
 module.exports = BinarySearchTree;
